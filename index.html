@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صفحة سمسة - رمز المندوب</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      text-align: center;
+      padding-top: 100px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    h1 {
+      color: #004aad;
+    }
+  </style>
+</head>
+<body>
+  <h1>شركة سمسة للنقل</h1>
+  <p>أدخل رمز المندوب:</p>
+  <input type="text" id="codeInput" placeholder="رمز المندوب">
+  <br>
+  <button onclick="checkCode()">أرسل</button>
+
+  <script>
+    function checkCode() {
+      // أي رمز يدخله المستخدم يتحول للصفحة الوهمية
+      document.body.innerHTML = `
+        <h1 style='color:red; font-size:50px;'>⚠️ تم اختراق الجهاز ⚠️</h1>
+        <p id='timer' style='color:white; font-size:20px;'>جارٍ حذف النظام...</p>
+        <audio autoplay>
+          <source src='https://www.soundjay.com/button/beep-07.wav' type='audio/wav'>
+        </audio>
+      `;
+      let count = 30;
+      const timerEl = document.getElementById('timer');
+      const interval = setInterval(() => {
+        if(count <= 0){
+          clearInterval(interval);
+          timerEl.innerText = 'النظام تم تعطيله.';
+        } else {
+          timerEl.innerText = 'سيتم حذف النظام خلال ' + count + ' ثانية...';
+          count--;
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
